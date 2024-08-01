@@ -1,0 +1,120 @@
+body {
+    font-family: 'Pacifico', cursive;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text inside content */
+}
+
+nav {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin-left: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #ff6f61; /* Warm color for hover effect */
+    color: white;
+}
+
+.content {
+    background: linear-gradient(to bottom, rgba(255, 204, 204, 0.7), rgba(255, 255, 255, 0.7));
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px; /* Limit content width */
+    width: 100%; /* Full width up to max-width */
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+}
+
+.floating-emojis {
+    font-size: 2em;
+    animation: floatUp 10s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto; /* Center slideshow container */
+}
+
+.slides {
+    width: 100%;
+    max-height: 300px; /* Limit the height of images */
+    object-fit: contain; /* Ensure images fit within the container */
+    border-radius: 10px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #ff6f61; /* Romantic button color */
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff4f4f;
+}
+
+audio {
+    display: none;
+}
