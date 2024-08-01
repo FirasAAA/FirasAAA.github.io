@@ -6,8 +6,92 @@
     <title>Roses Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            text-align: center;
+        }
+        nav {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        nav ul li a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .content {
+            margin: 20px;
+        }
+        .floating-emojis {
+            font-size: 2em;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .slides {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 2em;
+            transform: translateY(-50%);
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .audio-controls {
+            margin-top: 20px;
+        }
+        .audio-controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .audio-controls button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<body onload="playMusic()">
+<body>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -17,7 +101,7 @@
     <div class="content">
         <div class="floating-emojis">🌹🌹🌹🌹🌹</div>
         <p>Malgré toutes les galères et les moments difficiles, on garde toujours de bons souvenirs. Je ne voudrais jamais oublier cela. J’ai toujours peur que cela finisse mal, mais je ne voudrais pas te perdre. Je fais tout mon possible pour éviter cela. Je te laisse regarder les bons moments en dessous, même si c'est virtuel, car tu ne m'as pas laissé garder les photos, et la raison est logique. Tu es la meilleure !!!!!!!!!
-         (utilise les fleches !)
+         (utilise les fleches ! et appuiye sur la musique)
         </p>
         <img class="slides" src="/1.jpg" style="display: block;">
         <img class="slides" src="/2.jpg" style="display: none;">
@@ -31,12 +115,42 @@
         <img class="slides" src="/9.jpg" style="display: none;">
         <img class="slides" src="/10.jpg" style="display: block;">
         <img class="slides" src="/11.jpg" style="display: none;">
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        <div class="audio-controls">
+            <button onclick="toggleMusic()">Play Music</button>
         </div>
     </div>
-    <audio id="background-music" src="/08- Kara Sevda - Anlatamam.mp3" loop></audio>
+    <audio id="background-music" src="/08- Kara Sevda - Anlatamam.mp3" preload="auto"></audio>
+    <script>
+        let currentImageIndex = 0;
+        const images = ['/1.jpg', '/2.jpg', '/3.jpg', '/4.jpg', '/5.jpg', '/6.jpg', '/7.jpg', '/8.jpg', '/9.jpg', '/10.jpg', '/11.jpg'];
+        const audio = document.getElementById('background-music');
+
+        function showImage(index) {
+            const slides = document.querySelectorAll('.slides');
+            slides.forEach((slide, i) => {
+                slide.style.display = (i === index) ? 'block' : 'none';
+            });
+        }
+
+        function changeSlide(step) {
+            currentImageIndex = (currentImageIndex + step + images.length) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                document.querySelector('.audio-controls button').textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                document.querySelector('.audio-controls button').textContent = 'Play Music';
+            }
+        }
+
+        // Show the first image by default
+        showImage(currentImageIndex);
+    </script>
 </body>
 </html>
-
-
